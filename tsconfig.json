@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "lib": [
+            "ES2022",
+            "DOM"
+        ],
+        "types": [
+            "chrome"
+        ],
+        "strict": true,
+        "rootDir": "src",
+        "outDir": "dist",
+        "moduleDetection": "legacy"
+    },
+    "include": [
+        "src"
+    ]
+}

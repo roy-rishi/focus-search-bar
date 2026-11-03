@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "Search Bar?",
+    "version": "0.0.1",
+    "description": "Focus the search bar of the active tab by pressing '?' ('/')",
+    "action": {
+        "default_popup": "src/popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*/*",
+                "http://*/*"
+            ],
+            "js": [
+                "dist/worker.js"
+            ]
+        }
+    ],
+    "permissions": [
+        "activeTab"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ]
+}
