@@ -33,6 +33,7 @@ function findInputElem(): HTMLInputElement | null {
             continue;
 
         console.log(`Search Bar?: Using selector '${sel}'`);
+        chrome.storage.local.set({ lastSelector: sel });
         return (matches[0]);
     }
     return null;
@@ -51,9 +52,12 @@ document.addEventListener("keydown", (e: KeyboardEvent) => {
 
     // use a hard-coded selector if implemented for the hostname
     let searchBar: HTMLInputElement | null = null;
-    switch (window.location.hostname.toLowerCase()) {
+    const hostname = window.location.hostname.toLowerCase();
+    chrome.storage.local.set({ lastSite: hostname });
+    switch (hostname) {
         case "www.amazon.com":
             const elem = document.getElementById("twotabsearchtextbox");
+            chrome.storage.local.set({ lastSelector: "#twotabsearchtextbox" });
             if (!elem || !(elem instanceof HTMLInputElement)) return;
             searchBar = elem;
             break;
