@@ -1,5 +1,3 @@
-const NON_TEXT = ['hidden', 'checkbox', 'radio', 'button', 'submit', 'reset', 'image', 'file', 'range', 'color'];
-
 const SEARCH_SELECTORS = [
     'input[type="search" i]',           // standard type for search fields
     'input[placeholder*="search" i]',   // placeholder text
@@ -17,7 +15,9 @@ function isEditable(e: EventTarget): boolean {
         return false;
     if (!(e instanceof HTMLInputElement))
         return false;
-    return !NON_TEXT.includes(e.type);
+
+    const nonText = ['hidden', 'checkbox', 'radio', 'button', 'submit', 'reset', 'image', 'file', 'range', 'color'];
+    return !nonText.includes(e.type);
 }
 
 function selectInput(e: HTMLInputElement) {
@@ -34,7 +34,7 @@ function findInputElem(): HTMLInputElement | null {
 
         console.log(`Search Bar?: Using selector '${sel}'`);
         chrome.storage.local.set({ lastSelector: sel });
-        return (matches[0]);
+        return (usableMatches[0]);
     }
     return null;
 }
